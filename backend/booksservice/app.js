@@ -20,4 +20,4 @@ app.get('/getBooks', function(req, res){
 
 var server = app.listen(8081, 'localhost', function(){
     console.log("Server running on :", 8081);
-})
+});

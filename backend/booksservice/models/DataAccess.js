@@ -24,7 +24,8 @@ DataAccess.prototype.GetEntities = async function (dbName, CollectionName, query
             var response = await that.MongoClient.connect(that.DBConnectionString, {
                 useNewUrlParser: true,
                 useUnifiedTopology: true
-              });
+              }
+            );
             if(response){
                 var database = await response.db(dbName);
                 var collection = await database.collection(CollectionName);
