@@ -4,5 +4,8 @@
       <mat-card-title>Books</mat-card-title>
       <mat-card-subtitle>Below is a list of the books that are available in the library</mat-card-subtitle>
     </mat-card-header>
+    <div *ngFor="let book of books">
+      {{book.name}}
+    </div>
   </mat-card>
 </div>

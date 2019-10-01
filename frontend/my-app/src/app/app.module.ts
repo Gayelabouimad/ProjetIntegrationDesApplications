@@ -9,7 +9,8 @@ import {MatCardModule} from '@angular/material/card';
 import { CustomerscontainerComponent } from './customerscontainer/customerscontainer.component';
 import { OrderscontainerComponent } from './orderscontainer/orderscontainer.component';
 
-
+// for HTTP calls (to the backend)
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { OrderscontainerComponent } from './orderscontainer/orderscontainer.comp
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MatCardModule
+    MatCardModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
