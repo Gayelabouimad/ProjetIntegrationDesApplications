@@ -15,13 +15,17 @@ Then in another shell
 
 ## MongoDB commands (To create a DB)
 In order to create a Database
+
 ``` use <DB_Name> ```
 
 In order to create a collection
+
 ``` db.createCollection("<Coll_Name>")```
 
 In order to add a row to the collection
+
 ``` db.<Coll_Name>.insert({<all the key-value pairs>})```
 
 In order to get all the collection
+
 ``` db.<Coll_Name>.find()```
