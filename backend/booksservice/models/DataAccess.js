@@ -21,20 +21,16 @@ DataAccess.prototype.GetEntities = async function (dbName, CollectionName, query
         return j;
     }else{
         try {
-            var response = await  that.MongoClient.connect(that.DBConnectionString);
+            var response = await that.MongoClient.connect(that.DBConnectionString, {
+                useNewUrlParser: true,
+                useUnifiedTopology: true
+              });
             if(response){
-                var database = response.db(dbname);
-                var collection = database.collection(CollectionName);
-                collection.find(query).toArray(function (err, docs){
-                    db.close();
-                    if(err){
-                        reject(err);
-
-                    }else{
-                        return docs;
-                        // fulfill(docs);
-                    }
-                });
+                var database = await response.db(dbName);
+                var collection = await database.collection(CollectionName);
+                const item = await collection.find();
+                const documents = await item.toArray();
+                return documents;
             }
         }catch(err){
             return err;

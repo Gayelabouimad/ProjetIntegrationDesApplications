@@ -8,10 +8,8 @@ Model.prototype.GetInventory = async function(category){
     if(category){
         query.category = category;
     }
-    console.log("fetet la hon");
     try{
-        var response = await DataAccess.GetEntities('testing', 'books', query);
-        console.log(response);
+        var response = await DataAccess.GetEntities('books_microservice', 'books', query);
         return response;
     }catch(err){
         return err;
