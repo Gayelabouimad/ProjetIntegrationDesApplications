@@ -3,7 +3,8 @@ var DataAccess = function(){
     this.Mongo = require('mongodb');
     this.DBConnectionString = 'mongodb://localhost:27017';
 };
-
+// FOR GAYEL
+// dbpath=C:\data\db\
 
 DataAccess.prototype.GetEntities = async function (dbName, CollectionName, query){
     var that = this;
