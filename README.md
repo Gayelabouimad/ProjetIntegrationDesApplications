@@ -104,3 +104,28 @@ then for each book we are displaying its name
 
 
 
+## Docker and Co..
+
+Docker and Virtual box cannot be installed on the same machine and work simultaniously because of Hyper-V.
+So in order to use docker we install **docker tool box** from [](https://github.com/docker/toolbox/releases)
+after installing it, click on **docker quickstart terminal**. When its done, we can now use docker
+
+As an example we can test the following command
+
+> ``` docker run hello-world  ```
+
+or
+
+> ``` docker run -it ubuntu bash ```
+
+In order to see all the docker processes that are running, open another command line and write the following command:
+
+> ``` docker ps ```
+
+In order to see all the docker images, write the following command:
+
+> ``` docker images ```
+
+In order to stop a container, write the following command:
+
+> ``` docker stop <Container_Name> ```
