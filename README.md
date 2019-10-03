@@ -106,6 +106,21 @@ then for each book we are displaying its name
 
 ## Docker and Co..
 
+### Definition
+
+**What is Docker?**
+
+- Enterprise-ready container platform
+- Provides security and governance
+- Automation by design
+- Support and certification
+
+Docker takes advantage of a concept called containerization.
+
+- It solves the problem of how to reliably move software between environments
+- Encapsulates the entire runtime environment
+- Includes the application and its dependencies, libraries and other binaries
+
 Docker and Virtual box cannot be installed on the same machine and work simultaniously because of Hyper-V.
 So in order to use docker we install **docker tool box** from [](https://github.com/docker/toolbox/releases)
 after installing it, click on **docker quickstart terminal**. When its done, we can now use docker
@@ -126,6 +141,48 @@ In order to see all the docker images, write the following command:
 
 > ``` docker images ```
 
-In order to stop a container, write the following command:
+In order to stop a container, write the following command from another cmd:
 
 > ``` docker stop <Container_Name> ```
+
+or
+> ``` exit ```
+
+To create a container
+
+> ``` docker run --name <container_Name> -it <image_name> ```
+
+To remove a container
+
+> ``` docker rm <container_name or container_ID>```
+
+
+## NGINX
+This tool will help us make load balance and acts as an API Gateway.
+
+there are three methods of Scalability
+- Run multiple copies behind a load balancer
+- Split the app into multiple services
+- partition the data using data shards
+
+The goal is to split traffic among multiple servers
+most common scaling solution
+can be deployed as single or multiple services per server
+
+**What is NGINX?**
+- web server
+- load balancer
+- Reverse/ Forward Proxy
+- Cache manager
+
+how to install it on ubuntu :
+first we should create the container
+
+> ``` docker run --name NGINX_APIGATEWAY -it ubuntu ```
+
+1. ``` apt-get update ``` to update the packages
+2. ``` apt-get install nginx ```
+
+
+
+## PM2

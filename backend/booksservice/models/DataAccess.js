@@ -4,13 +4,13 @@ var DataAccess = function(){
     this.DBConnectionString = 'mongodb://localhost:27017';
 };
 // FOR GAYEL
-// dbpath=C:\data\db\
+// --dbpath C:\data\db\
 
 DataAccess.prototype.GetEntities = async function (dbName, CollectionName, query){
     var that = this;
     if(query){
         try{
-            query = JSON.parse(query);
+            // query = JSON.parse(query);
         }catch(exception){
             console.log(exception);
         }
