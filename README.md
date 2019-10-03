@@ -1,7 +1,38 @@
 # ProjetIntegrationDesApplications
 
-this is our project
+## Backend
 
+to build one of the microservices. example :
+go to backend/booksservice and run
+
+> ``` npm install ```
+
+then run
+
+> ``` node app.js ```
+
+
+**If you want to use a live reloading engine** run the following command:
+
+> ``` npm i -g nodemon ```
+
+and then instead of running `node app.js` , use `nodemon app.js`
+
+this tool will re-run the backend every time a change is made
+
+## Frontend
+
+to build the front end go to /frontend/my-app and run
+
+> ``` npm install ```
+
+then run
+
+> ``` ng serve ```
+
+then in your browser
+
+> ``` localhost:4200 ```
 
 ## MongoDB commands (To Run MongoDB)
 Open the shell and write down this command
