@@ -180,8 +180,31 @@ first we should create the container
 
 > ``` docker run --name NGINX_APIGATEWAY -it ubuntu ```
 
+once the image is created the shell is an ubuntu shell. write the following commands
+
 1. ``` apt-get update ``` to update the packages
-2. ``` apt-get install nginx ```
+2. ``` apt-get install nginx ``` to install nginx
+in order to run it we need to type nginx on a specific port so
+
+3. ``` exit ```
+
+4. ``` docker commit <image_ID> <choose a repo name> ```
+example : docker commit 1f0c95423750 nginx_micro
+
+5. ``` docker run -it -p 8083:80 nginx_micro ```
+
+now we are running an ubuntu image in our container
+
+6. ``` service nginx start ```
+
+now open chrome and type :
+
+``` http://192.168.99.100:8083/ ```
+
+(we used 192.168.99.100 instead of localhost because we are using docker toolbox)
+
+we are redirected to welcome to nginx
+
 
 
 
