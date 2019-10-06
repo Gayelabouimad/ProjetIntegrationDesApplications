@@ -4,5 +4,31 @@
       <mat-card-title>Customers</mat-card-title>
       <mat-card-subtitle>Below is a list of the cutomers of the library</mat-card-subtitle>
     </mat-card-header>
+
+    <mat-list>
+      <mat-list-item *ngFor="let customer of customers">
+        <h4 mat-line>{{ customer.firstName }} {{ customer.lastName }}</h4>
+        <mat-divider></mat-divider>
+      </mat-list-item>
+    </mat-list>
+
+    <div style="border-style: solid; padding : 1em; margin-top: 1em">
+      <div >Insert the customer's info in order to add them to the list</div>
+
+      <form class="example-form">
+        <mat-form-field  class="example-full-width">
+          <input matInput placeholder="First Name" value="" #firstName>
+        </mat-form-field>
+        <mat-form-field  class="example-full-width">
+          <input matInput placeholder="Last Name" value="" #lastName>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <span matPrefix>+961 &nbsp;</span>
+          <input type="tel" matInput placeholder="Telephone" #phoneNumber>
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="addUserInfo(firstName.value, lastName.value, phoneNumber.value)">Submit</button>
+      </form>
+    </div>
+
   </mat-card>
 </div>
