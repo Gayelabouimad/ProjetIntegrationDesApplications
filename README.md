@@ -187,6 +187,52 @@ To remove a container
 
 > ``` docker rm <container_name or container_ID>```
 
+### DockerFile
+
+A docker file is the main configuration of the docker container. We can set all we need in a single file as follows
+
+Here we are setting the environnment (we need the node package in this container so we pull it)
+
+> ``` FROM node:latest```
+
+now we need to copy all the booksservice folder to the container
+. means the current directory and /src is the destination folder rin the container
+> ``` COPY . /src ```
+
+now we should set the working directory in the container
+
+> ``` WORKDIR /src ```
+
+and we need to specify the command that should be ran before building the service which is npm install so we install all the dependencies
+
+> ``` RUN npm install ```
+
+in order to make the calls to the backend we call on port 8081. now that the service is in the container. the container looks like a black box so we should call the container's port. this port should be binded to the microservices port which is 8081 so we expose port 8081
+
+> ``` EXPOSE 8081 ```
+
+after setting everything we should start the app (microservice) so we set the command
+
+> ``` CMD node app.js ```
+
+### Docker-Compose
+
+if we have multiple docker file it is better to create a docker compose which will run them all.
+
+```
+version: '3'
+services:
+  books:
+    build: ./booksservice
+    ports:
+      - "8081:8081"
+```
+
+above is the docker compose file
+we specify the build file which is the docker file
+and we bind the ports local to container's
+
+
 
 ## NGINX
 This tool will help us make load balance and acts as an API Gateway.
