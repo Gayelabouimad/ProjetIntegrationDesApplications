@@ -15,7 +15,7 @@ app.use(cors())
 var model = require('./models/booksModel');
 
 app.get('/', function(req, res){
-    res.send("hello world");
+    res.send("hello world !!");
 });
 
 app.get('/getBooks', function(req, res){
@@ -34,6 +34,15 @@ app.get('/insertBook', function(req, res){
     }).catch(function(err){
         res.send(err);
     });
+});
+
+app.get('/heartbeat', function(req, res){
+    var status = {
+        success: true,
+        // address: server.address().address,
+        // port: server.address().port,
+    };
+    res.send(status);
 });
 
 var server = app.listen(8081, function(){
