@@ -1,0 +1,6 @@
+version: '3'
+services:
+  books:
+    build: ./booksservice
+    ports:
+      - "8081:8081"

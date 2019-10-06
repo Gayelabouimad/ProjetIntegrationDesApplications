@@ -236,7 +236,40 @@ now open chrome and type :
 
 we are redirected to welcome to nginx
 
+### Load balancing with NGINX
 
+- use the upstream directtive to declare servers
+- use the proxy_pass directive to create the load balancer
+
+example:
+micro 1 : 162.243.144.211   8081
+micro 2 : 162.243.144.211   8082
+Same server but diffrent ports
+
+Config file is located in /etc/nginx/available-sites/default
+
+first we should set the upstread to point to the micros
+
+> ``` upstream microservices {
+>       server 162.243.144.211:8081
+>       server 162.243.144.211:8082
+> }
+> ```
+
+Then set the server to listen to port 80 or 443
+
+> ```
+> server {
+>     listen 80;
+>     location/{
+>         proxy_pass http://microservices
+>     }
+> }
+> ```
+
+So whenever we navigate to the port 8081 we can find the docker image running that points to the nginx server
+
+### Using NGINX as an API Gateway
 
 
 ## PM2

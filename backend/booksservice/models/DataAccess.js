@@ -1,22 +1,11 @@
 var DataAccess = function(){
     this.MongoClient = require('mongodb').MongoClient, assert = require('assert');
     this.Mongo = require('mongodb');
-    this.DBConnectionString = 'mongodb://localhost:27017';
+    this.DBConnectionString = 'mongodb://192.168.16.7:27017';
 };
-// FOR GAYEL
-// --dbpath C:\data\db\
 
-DataAccess.prototype.GetEntities = async function (dbName, CollectionName, query){
+DataAccess.prototype.GetEntities = async function (dbName, CollectionName){
     var that = this;
-    if(query){
-        try{
-            // query = JSON.parse(query);
-        }catch(exception){
-            console.log(exception);
-        }
-    }else{
-        query = {};
-    }
     if(dbName == 'testing'){
         var j = { 'name1': 'gayel', 'name2': "cindy"};
         return j;
@@ -27,38 +16,48 @@ DataAccess.prototype.GetEntities = async function (dbName, CollectionName, query
                 useUnifiedTopology: true
               }
             );
-            if(response){
-                var database = await response.db(dbName);
-                var collection = await database.collection(CollectionName);
-                const item = await collection.find();
-                const documents = await item.toArray();
-                return documents;
-            }
+            // console.log("response :", response);
+            // console.log("ANA HONN")
+            var database = await response.db(dbName);
+            var collection = await database.collection(CollectionName);
+            const item = await collection.find();
+            const documents = await item.toArray();
+            return documents;
         }catch(err){
+            // console.log(err.name);
+            if(err.name == 'MongoNetworkError'){
+                console.log("---------hello-----------Connection to DB Failed");
+                console.log(err);
+                return 'Connection to DB Failed';
+            }
             return err;
         }
     }
+};
 
+DataAccess.prototype.putBook = async function (dbName, CollectionName){
+    try {
+        var that = this;
+        var response = await that.MongoClient.connect(that.DBConnectionString, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+            }
+        );
+        var database = await response.db(dbName);
+        var myobj = { name: "Company Inc", address: "Highway 37" };
 
-
-    // return new Promise( function(fulfill, reject){
-    //     that.MongoClient.connect(that.DBConnectionString)
-    //     .then(function(db){
-    //         var database = db.db(dbname);
-    //         var collection = database.collection(CollectionName);
-    //         collection.find(query).toArray(function (err, docs){
-    //             db.close();
-    //             if(err){
-    //                 reject(err);
-    //             }else{
-    //                 fulfill(docs);
-    //             }
-    //         });
-    //     }).catch(function(err){
-    //         reject(err);
-    //     })
-    // })
-
+        database.collection(CollectionName).insertOne(myobj, function(err, res) {
+            if (err) throw err;
+            console.log("1 document inserted");
+        });
+    }catch(err){
+        console.log(err.name);
+        if(err.name == 'MongoNetworkError'){
+            console.log(err);
+            return 'Connection to DB Failed';
+        }
+        return err;
+    }
 };
 
 

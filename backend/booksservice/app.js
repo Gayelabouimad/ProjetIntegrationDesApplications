@@ -10,14 +10,23 @@ app.get('/', function(req, res){
 });
 
 app.get('/getBooks', function(req, res){
-    var categry = req.query.category;
-    model.GetInventory(categry).then(function(docs){
+    model.GetInventory().then(function(docs){
         res.send(docs);
     }).catch(function(err){
         res.send(err);
     });
 });
+app.get('/insertBook', function(req, res){
+    // var categry = req.query.category;
+    model.addBook().then(function(docs){
+        res.send(docs).header({
+            "Access-Control-Allow-Credentials": true
+        });
+    }).catch(function(err){
+        res.send(err);
+    });
+});
 
-var server = app.listen(8081, 'localhost', function(){
+var server = app.listen(8081, function(){
     console.log("Server running on :", 8081);
 });
