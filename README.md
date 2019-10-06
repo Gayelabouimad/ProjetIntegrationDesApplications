@@ -37,12 +37,11 @@ then in your browser
 ## MongoDB commands (To Run MongoDB)
 Open the shell and write down this command
 
-> ```mongod --dbpath "C://YOURDIRECTORY//ProjetIntegrationDesApplications//database"```
+> ```mongod --dbpath "C://YOURDIRECTORY//ProjetIntegrationDesApplications//database" --bind_ip <YOUR_IP_ADDR>```
 
 Then in another shell
 
-> ```mongo.exe```
-
+> ```mongo.exe <YOUR_IP_ADDR> ```
 
 ## MongoDB commands (To create a DB)
 In order to create a Database
@@ -231,8 +230,6 @@ services:
 above is the docker compose file
 we specify the build file which is the docker file
 and we bind the ports local to container's
-
-
 
 ## NGINX
 This tool will help us make load balance and acts as an API Gateway.
