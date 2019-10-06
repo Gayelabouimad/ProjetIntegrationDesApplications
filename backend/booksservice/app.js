@@ -1,5 +1,5 @@
 
-// mongod --dbpath "C:\Users\user\Desktop\Semestre 9\Integration Des Applications\ProjetIntegrationDesApplications\database\data\db" --bind_ip 192.168.16.7
+// mongod --bind_ip 192.168.16.7
 
 // mongo 192.168.16.7
 
@@ -12,7 +12,7 @@ app.use(cors())
 var model = require('./models/booksModel');
 
 app.get('/', function(req, res){
-    res.send("hello world !!");
+    res.send("Books Microservices Root");
 });
 
 app.get('/getBooks', function(req, res){

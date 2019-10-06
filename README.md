@@ -1,4 +1,21 @@
 # ProjetIntegrationDesApplications
+## How to run the Project
+
+Shell #1 (any path)
+
+> ``` mongod --bind_ip <YOUR IP> ```
+
+Shell #2 (any path)
+
+> ``` mongo <YOUR IP> ```
+
+Shell #3 (./frontend/my-app/)
+
+> ``` ng serve ```
+
+Shell #4 (./backend/) - **make sure to open docker tool box before running this command**
+
+> ``` docker-compose up ```
 
 ## Backend
 
@@ -230,7 +247,7 @@ services:
 above is the docker compose file
 we specify the build file which is the docker file
 and we bind the ports local to container's
-
+<!--
 ## NGINX
 This tool will help us make load balance and acts as an API Gateway.
 
@@ -315,4 +332,4 @@ So whenever we navigate to the port 8081 we can find the docker image running th
 ### Using NGINX as an API Gateway
 
 
-## PM2
+## PM2 -->
