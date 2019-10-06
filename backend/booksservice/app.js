@@ -36,15 +36,16 @@ app.get('/insertBook', function(req, res){
     });
 });
 
-app.get('/heartbeat', function(req, res){
-    var status = {
-        success: true,
-        // address: server.address().address,
-        // port: server.address().port,
-    };
-    res.send(status);
-});
 
 var server = app.listen(8081, function(){
     console.log("Server running on :", 8081);
+});
+
+app.get('/heartbeat', function(req, res){
+    var status = {
+        success: true,
+        address: server.address().address,
+        port: server.address().port,
+    };
+    res.send(status);
 });
