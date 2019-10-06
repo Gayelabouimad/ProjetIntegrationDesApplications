@@ -22,7 +22,7 @@ app.get('/getBooks', function(req, res){
         res.send(err);
     });
 });
-app.get('/insertBooks', function(req, res){
+app.get('/initiateDB', function(req, res){
     var books = [
         {
             "_id": "5d92ffe677d6510df5fc2dcb",
