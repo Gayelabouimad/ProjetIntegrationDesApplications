@@ -35,7 +35,7 @@ DataAccess.prototype.GetEntities = async function (dbName, CollectionName){
     }
 };
 
-DataAccess.prototype.putBook = async function (dbName, CollectionName){
+DataAccess.prototype.putBook = async function (dbName, CollectionName, data){
     try {
         var that = this;
         var response = await that.MongoClient.connect(that.DBConnectionString, {
@@ -44,12 +44,15 @@ DataAccess.prototype.putBook = async function (dbName, CollectionName){
             }
         );
         var database = await response.db(dbName);
-        var myobj = { name: "Company Inc", address: "Highway 37" };
-
-        database.collection(CollectionName).insertOne(myobj, function(err, res) {
+        // var myobj = { name: "Company Inc", address: "Highway 37" };
+        database.collection(CollectionName).insertMany(data ,function(err, res) {
             if (err) throw err;
-            console.log("1 document inserted");
+            console.log("Documents inserted");
         });
+        // database.collection(CollectionName).insertOne(myobj, function(err, res) {
+        //     if (err) throw err;
+        //     console.log("1 document inserted");
+        // });
     }catch(err){
         console.log(err.name);
         if(err.name == 'MongoNetworkError'){

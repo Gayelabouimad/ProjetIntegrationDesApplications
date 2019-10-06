@@ -37,7 +37,7 @@ then in your browser
 ## MongoDB commands (To Run MongoDB)
 Open the shell and write down this command
 
-> ```mongod --dbpath "C://YOURDIRECTORY//ProjetIntegrationDesApplications//database" --bind_ip <YOUR_IP_ADDR>```
+> ```mongod --bind_ip <YOUR_IP_ADDR>```
 
 Then in another shell
 

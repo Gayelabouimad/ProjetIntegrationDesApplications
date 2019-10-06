@@ -12,9 +12,9 @@ Model.prototype.GetInventory = async function(){
     }
 };
 
-Model.prototype.addBook = async function(){
+Model.prototype.addBook = async function(books){
     try{
-        var response = await DataAccess.putBook('books_microservice', 'books');
+        var response = await DataAccess.putBook('books_microservice', 'books', books);
         return response;
     }catch(err){
         console.log("error in the model");
