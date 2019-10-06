@@ -1,4 +1,11 @@
 
+// mongod --dbpath "C:\Users\user\Desktop\Semestre 9\Integration Des Applications\ProjetIntegrationDesApplications\database\data\db" --bind_ip 192.168.16.7
+
+// mongo 192.168.16.7
+
+
+
+
 var express = require('express');
 var cors = require('cors');
 var app = express();

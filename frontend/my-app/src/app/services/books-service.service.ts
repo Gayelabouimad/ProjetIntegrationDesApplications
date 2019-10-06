@@ -12,10 +12,11 @@ export class BooksServiceService {
   getBooks() {
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-        Authorization: 'my-auth-token'
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': 'true'
       })
     };
-    return this.http.get('http://localhost:8081/getBooks', httpOptions);
+    return this.http.get('http://192.168.99.100:8081/getBooks', httpOptions);
   }
 }
