@@ -19,7 +19,7 @@ export class BookscontainerComponent implements OnInit {
     this.booksService.getBooks()
     .subscribe((data) => {
       this.books = data;
-      // console.log('data', data);
+      console.log('data', data);
       // console.log('this.books', this.books);
     });
   }

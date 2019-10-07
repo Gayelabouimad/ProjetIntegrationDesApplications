@@ -4,5 +4,23 @@
       <mat-card-title >Orders</mat-card-title>
       <mat-card-subtitle>please specify the id of the book you want to rent the the customer's id</mat-card-subtitle>
     </mat-card-header>
+
+
+    <mat-form-field style="margin-left: 2em">
+      <mat-label>Choose a Customer</mat-label>
+      <select matNativeControl>
+        <option value={{customer.firstName}} *ngFor="let customer of customers">{{customer.firstName}} {{customer.lastName}}</option>
+      </select>
+    </mat-form-field>
+
+    <mat-form-field style="margin-left: 2em">
+      <mat-label>Choose a Book</mat-label>
+      <select matNativeControl>
+        <option value={{book.name}} *ngFor="let book of books">{{book.name}}</option>
+      </select>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" style="margin-left: 2em" (click)="makeOrder()">Order!</button>
+
   </mat-card>
 </div>
