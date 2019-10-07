@@ -15,6 +15,12 @@ app.get("/getStatus", async function(req, res) {
       address: "192.168.99.100",
       port: 8081
     },
+    {
+      name: "Customers Microservice",
+      url: "http://192.168.99.100",
+      address: "192.168.99.100",
+      port: 8082
+    },
   ];
 
   var promises = await model.GetStatus(services);
@@ -39,6 +45,6 @@ app.get("/getStatus", async function(req, res) {
     });
 });
 
-var server = app.listen(80, function() {
-  console.log("Server running on :", 80);
+var server = app.listen(8080, function() {
+  console.log("Server running on :", 8080);
 });

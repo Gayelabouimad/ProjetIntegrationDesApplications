@@ -1,7 +1,9 @@
 
 // mongod --bind_ip 192.168.16.7
+// mongod --bind_ip 172.22.1.154
 
 // mongo 192.168.16.7
+// mongo 172.22.1.154
 
 var express = require('express');
 var cors = require('cors');
@@ -66,6 +68,7 @@ var server = app.listen(8081, function(){
 app.get('/heartbeat', function(req, res){
     var status = {
         success: true,
+        "name": "Customers Microservice",
         address: server.address().address,
         port: server.address().port,
     };

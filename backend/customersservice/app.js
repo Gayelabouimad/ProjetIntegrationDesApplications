@@ -29,7 +29,7 @@ app.post('/addCustomer', function(req, res){
         "firstName": req.body.firstName,
         "lastName": req.body.lastName,
         "phoneNumber": req.body.phoneNumber,
-        "book": ''
+        "book": req.body.book
     };
     console.log("customer in backend", customer);
     model.AddCustomer(customer).then(function(docs){
@@ -43,3 +43,14 @@ app.post('/addCustomer', function(req, res){
 var server = app.listen(8082, function(){
     console.log("Server running on :", 8082);
 });
+
+
+app.get('/heartbeat', function(req, res){
+    var status = {
+        "name": "Customers Microservice",
+        success: true,
+        address: server.address().address,
+        port: server.address().port,
+    };
+    res.send(status);
+  });

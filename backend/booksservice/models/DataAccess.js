@@ -1,7 +1,7 @@
 var DataAccess = function(){
     this.MongoClient = require('mongodb').MongoClient, assert = require('assert');
     this.Mongo = require('mongodb');
-    this.DBConnectionString = 'mongodb://192.168.16.7:27017';
+    this.DBConnectionString = 'mongodb://172.22.1.154:27017';
 };
 
 DataAccess.prototype.GetEntities = async function (dbName, CollectionName){

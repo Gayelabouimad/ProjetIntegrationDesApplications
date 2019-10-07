@@ -8,6 +8,10 @@
     <mat-list>
       <mat-list-item *ngFor="let customer of customers">
         <h4 mat-line>{{ customer.firstName }} {{ customer.lastName }}</h4>
+        <p *ngIf="customer.book; else notShow" style='color: blue'>{{ customer.book }}</p>
+        <ng-template #notShow>
+          <p style='color: red'>Doesn't Have a Book</p>
+        </ng-template>
         <mat-divider></mat-divider>
       </mat-list-item>
     </mat-list>

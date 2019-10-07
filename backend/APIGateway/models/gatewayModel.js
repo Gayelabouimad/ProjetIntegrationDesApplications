@@ -26,9 +26,9 @@ Model.prototype.GetMicroserviceData = async function(url){
                 body += data;
             });
             res.on("end", () => {
+                console.log(JSON.parse(body));
 
                 body = JSON.parse(body);
-                console.log(body);
                 try{
                     fulfill(body);
                 } catch(exception){

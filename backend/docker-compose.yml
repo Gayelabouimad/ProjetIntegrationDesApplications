@@ -1,6 +1,17 @@
 version: '3'
 services:
+# Service #0 API Gateway
+  apigateway:
+    build: ./APIGateway
+    ports:
+      - "8080:8080"
+# Service #1 Books Service
   books:
     build: ./booksservice
     ports:
       - "8081:8081"
+# Service #2 Customers Service
+  customers:
+    build: ./customersservice
+    ports:
+      - "8082:8082"
