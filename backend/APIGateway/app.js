@@ -1,7 +1,8 @@
 var express = require("express");
 var app = express();
 var model = require('./models/gatewayModel');
-
+const bodyParser = require("body-parser");
+app.use(bodyParser.json());
 
 app.get("/", function(req, res) {
   res.send("API Gateway Root");
@@ -21,10 +22,14 @@ app.get("/getStatus", async function(req, res) {
       address: "192.168.99.100",
       port: 8082
     },
+    {
+      name: "Orders Microservice",
+      url: "http://192.168.99.100",
+      address: "192.168.99.100",
+      port: 8083
+    },
   ];
-
   var promises = await model.GetStatus(services);
-//   console.log("promises", promises);
   Promise.all(promises)
     .then(function(values) {
       for (var i = 0; i < values.length; i++) {
@@ -43,6 +48,12 @@ app.get("/getStatus", async function(req, res) {
     .catch(function(err) {
       res.send(err);
     });
+});
+
+
+app.post("/receiveOrder", async function(req, res) {
+  console.log("res.body", req.body);
+  res.send("Call is fine");
 });
 
 var server = app.listen(8080, function() {
