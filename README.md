@@ -247,6 +247,9 @@ services:
 above is the docker compose file
 we specify the build file which is the docker file
 and we bind the ports local to container's
+
+## RabbitMQ
+This service will provide a way to make the messaging between the different microservices
 <!--
 ## NGINX
 This tool will help us make load balance and acts as an API Gateway.
