@@ -20,6 +20,7 @@ services:
     build: ./ordersservice
     ports:
       - "8083:8083"
+# MongoDB
   mongo:
     container_name: mongodb
     image: mongo

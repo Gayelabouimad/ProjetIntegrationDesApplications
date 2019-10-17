@@ -13,18 +13,36 @@ app.use(cors())
 
 var model = require('./models/booksModel');
 
-app.get('/', function(req, res){
+var mqtt = require('mqtt')
+var client = mqtt.connect('mqtt://127.0.0.1:1883')
+client.on('connect', function () {
+    console.log("Connected")
+    client.subscribe('GayelTest', function (err) {
+        console.log("Subscribed")
+        //   if (!err) {
+        //     client.publish('GayelTest', req.body.data)
+        //   }else{
+        //     console.log("erroor")
+        //   }
+    })
+})
+client.on('message', function (topic, message) {
+    console.log(message.toString())
+    client.end()
+})
+
+app.get('/', function (req, res) {
     res.send("Books Microservices Root");
 });
 
-app.get('/getBooks', function(req, res){
-    model.GetInventory().then(function(docs){
+app.get('/getBooks', function (req, res) {
+    model.GetInventory().then(function (docs) {
         res.send(docs);
-    }).catch(function(err){
+    }).catch(function (err) {
         res.send(err);
     });
 });
-app.get('/initiateDB', function(req, res){
+app.get('/initiateDB', function (req, res) {
     var books = [
         {
             "_id": "5d92ffe677d6510df5fc2dcb",
@@ -53,19 +71,19 @@ app.get('/initiateDB', function(req, res){
             "address": "Highway 37"
         }
     ];
-    model.addBook(books).then(function(docs){
+    model.addBook(books).then(function (docs) {
         res.send(docs);
-    }).catch(function(err){
+    }).catch(function (err) {
         res.send(err);
     });
 });
 
 
-var server = app.listen(8081, function(){
+var server = app.listen(8081, function () {
     console.log("Server running on :", 8081);
 });
 
-app.get('/heartbeat', function(req, res){
+app.get('/heartbeat', function (req, res) {
     var status = {
         success: true,
         "name": "Customers Microservice",
