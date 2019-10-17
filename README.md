@@ -238,10 +238,35 @@ if we have multiple docker file it is better to create a docker compose which wi
 ```
 version: '3'
 services:
+# Service #0 API Gateway
+  apigateway:
+    build: ./APIGateway
+    ports:
+      - "8080:8080"
+# Service #1 Books Service
   books:
     build: ./booksservice
     ports:
       - "8081:8081"
+# Service #2 Customers Service
+  customers:
+    build: ./customersservice
+    ports:
+      - "8082:8082"
+# Service #3 Orders Service
+  orders:
+    build: ./ordersservice
+    ports:
+      - "8083:8083"
+# MongoDB
+  mongo:
+    container_name: mongodb
+    image: mongo
+    volumes:
+      - ../data/db:/data/db
+    ports:
+      - "27017:27017"
+
 ```
 
 above is the docker compose file
