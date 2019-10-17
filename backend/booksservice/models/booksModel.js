@@ -22,5 +22,16 @@ Model.prototype.addBook = async function(books){
     }
 };
 
+Model.prototype.orderBook = async function(bookName){
+    try{
+        console.log("Model book name ", bookName);
+        var response = await DataAccess.changeState('books_microservice', 'books', bookName);
+        return response;
+    }catch(err){
+        console.log("error in the model");
+        return err;
+    }
+};
+
 module.exports = new Model();
 

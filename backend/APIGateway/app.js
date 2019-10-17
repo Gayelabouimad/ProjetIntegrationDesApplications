@@ -4,40 +4,36 @@ var model = require('./models/gatewayModel');
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 
+
+
+// --------------------------------------
 //  MQTT
 var mqtt = require('mqtt');
 
+app.post("/receiveOrder", async function(req, res) {
+  console.log("fet 3al received", req.body.bookName)
 
-// handle the request
-app.post('/processData', async function (req, res) {
-
-  var client  = mqtt.connect('mqtt://127.0.0.1:1883')
-  // client.on('connect', function () {
-  //   console.log("Connected")
-  //   client.subscribe('GayelTest', function (err) {
-  //     console.log("Subscribed")
-
-  //     if (!err) {
-  //       client.publish('GayelTest', req.body.data)
-  //     }else{
-  //       console.log("erroor")
-  //     }
-  //   })
-  // })
-   
+  var client  = mqtt.connect('mqtt://10.81.4.175:1883');
+  client.on('connect', function () {
+    console.log("Connected")
+    client.subscribe('GayelTest', function (err) {
+      console.log("Subscribed")
+      var message = JSON.stringify(req.body);
+      if (!err) {
+        client.publish('GayelTest', message)
+      }else{
+        console.log("erroor")
+      }
+    })
+  })
   client.on('message', function (topic, message) {
     // message is Buffer
     console.log(message.toString())
     res.send(message.toString())
     client.end()
   })
-
 });
-
-
-
-
-
+// --------------------------------------
 
 
 app.get("/", function(req, res) {
@@ -84,12 +80,6 @@ app.get("/getStatus", async function(req, res) {
     .catch(function(err) {
       res.send(err);
     });
-});
-
-
-app.post("/receiveOrder", async function(req, res) {
-  console.log("res.body", req.body);
-  res.send("Call is fine");
 });
 
 var server = app.listen(8080, function() {

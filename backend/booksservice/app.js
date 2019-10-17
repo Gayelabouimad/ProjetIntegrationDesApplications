@@ -13,23 +13,34 @@ app.use(cors())
 
 var model = require('./models/booksModel');
 
+// --------------------------------------
 var mqtt = require('mqtt')
-var client = mqtt.connect('mqtt://127.0.0.1:1883')
+// Client Connection
+var client = mqtt.connect('mqtt://10.81.4.175:1883')
+
 client.on('connect', function () {
     console.log("Connected")
+    // Client Subscription
     client.subscribe('GayelTest', function (err) {
-        console.log("Subscribed")
-        //   if (!err) {
-        //     client.publish('GayelTest', req.body.data)
-        //   }else{
-        //     console.log("erroor")
-        //   }
+        console.log("Subscribed");
+        if(err){
+            console.log("error");
+        }
     })
 })
+
+// When someone else publishes data
 client.on('message', function (topic, message) {
-    console.log(message.toString())
-    client.end()
-})
+    // message is Buffer
+    console.log(JSON.parse(message.toString()));
+    console.log("got a msg");
+    console.log(typeof(JSON.parse(message.toString())));
+    let message2 = JSON.parse(message.toString());
+    model.orderBook(message2.bookName);
+    // res.send(message.toString())
+    // client.end()
+  })
+// --------------------------------------
 
 app.get('/', function (req, res) {
     res.send("Books Microservices Root");

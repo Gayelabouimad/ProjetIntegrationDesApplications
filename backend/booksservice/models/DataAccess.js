@@ -64,4 +64,38 @@ DataAccess.prototype.putBook = async function (dbName, CollectionName, data){
 };
 
 
+DataAccess.prototype.changeState = async function (dbName, CollectionName, data){
+    try {
+        var that = this;
+        var response = await that.MongoClient.connect(that.DBConnectionString, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+            }
+        );
+        var database = await response.db(dbName);
+        // var myobj = { name: "Company Inc", address: "Highway 37" };
+        // database.collection(CollectionName).insertMany(data ,function(err, res) {
+        //     if (err) throw err;
+        //     console.log("Documents inserted");
+        // });
+        console.log("msg mnel prototype");
+        database.collection(CollectionName).updateOne(
+            { "name" : data },
+            { $set: { "status" : 1 } }
+         );
+         console.log("okkkk");
+        // database.collection(CollectionName).insertOne(myobj, function(err, res) {
+        //     if (err) throw err;
+        //     console.log("1 document inserted");
+        // });
+    }catch(err){
+        console.log(err.name);
+        if(err.name == 'MongoNetworkError'){
+            console.log(err);
+            return 'Connection to DB Failed';
+        }
+        return err;
+    }
+};
+
 module.exports = new DataAccess();
