@@ -105,6 +105,13 @@ then add it to the constructor in order to use it in the functions to make the c
 
 > ```   constructor(private http: HttpClient) { } ```
 
+Also, you should import http headers in the service :
+
+
+>> ``` import { HttpHeaders } from '@angular/common/http'; ```
+
+without adding it to the constructor so you can set the headers.
+
 4. To make the call to the back end, create the function getSomething() as follows
 
 > ```
@@ -115,7 +122,7 @@ then add it to the constructor in order to use it in the functions to make the c
 >        Authorization: 'my-auth-token'
 >      })
 >    };
->    return this.http.get('http://localhost:8081/getBooks', httpOptions);
+>    return this.http.get('http://192.168.99.100:8081/getBooks', httpOptions);
 >  }
 >  ```
 
@@ -151,6 +158,25 @@ Since the data in ts is binded to the data in the ts we can simply use the books
 As the code above shows we are looping over the array(books) of objects(book) using *ngFor
 then for each book we are displaying its name
 
+we have used angular material library as follows:
+
+```
+  <!-- loop over the books -->
+
+  <mat-list-item *ngFor="let book of books">
+    <h4 mat-line>{{ book.name }}</h4>
+  
+    <!-- book state : Available or Taken, if statement used below -->
+    <p *ngIf="book.status == 0; else notShow" style='color: blue'>Available</p>
+  
+    <ng-template #notShow>
+      <p style='color: red'>Taken</p>
+    </ng-template>
+  
+    <mat-divider></mat-divider>
+  
+  </mat-list-item>
+```
 
 
 ## G. Docker and Co..

@@ -12,15 +12,13 @@ export class BookscontainerComponent implements OnInit {
   constructor(private booksService: BooksServiceService) { }
 
   ngOnInit() {
-    this.showConfig();
+    this.showBooks();
   }
 
-  showConfig() {
+  showBooks() {
     this.booksService.getBooks()
     .subscribe((data) => {
       this.books = data;
-      console.log('data', data);
-      // console.log('this.books', this.books);
     });
   }
 }
