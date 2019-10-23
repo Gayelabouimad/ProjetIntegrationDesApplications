@@ -50,4 +50,29 @@ DataAccess.prototype.putCustomer = async function (dbName, CollectionName, data)
         return err;
     }
 };
+
+
+DataAccess.prototype.updateCustomer = async function (dbName, CollectionName, customer, book){
+    try {
+        var that = this;
+        var response = await that.MongoClient.connect(that.DBConnectionString, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+            }
+        );
+        var database = await response.db(dbName);
+
+        database.collection(CollectionName).updateOne(
+            { "firstName" : customer },
+            { $set: { "book" : book } }
+         );
+    }catch(err){
+        console.log(err.name);
+        if(err.name == 'MongoNetworkError'){
+            console.log(err);
+            return 'Connection to DB Failed';
+        }
+        return err;
+    }
+};
 module.exports = new DataAccess();

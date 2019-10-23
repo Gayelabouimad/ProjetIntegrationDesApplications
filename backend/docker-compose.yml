@@ -9,7 +9,7 @@ services:
   books:
     build: ./booksservice
     ports:
-      - "8081:8081"
+      - "8084:8084"
 # Service #2 Customers Service
   customers:
     build: ./customersservice
@@ -23,9 +23,14 @@ services:
 # MongoDB
   mongo:
     container_name: mongodb
+    restart: always
     image: mongo
     volumes:
       - ../data/db:/data/db
+
+  mongo-express:
+    image: mongo-express
+    restart: always
     ports:
-      - "27017:27017"
+      - "8081:8081"
 

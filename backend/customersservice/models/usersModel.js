@@ -22,5 +22,17 @@ Model.prototype.AddCustomer = async function(customer){
     }
 };
 
+
+Model.prototype.addBookToCustomer = async function(customer, book){
+    try{
+        var response = await DataAccess.updateCustomer('customers_microservice', 'customers', customer, book);
+        return response;
+    }catch(err){
+        console.log(err);
+        return err;
+    }
+};
+
+
 module.exports = new Model();
 

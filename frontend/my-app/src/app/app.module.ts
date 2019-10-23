@@ -11,6 +11,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
 
+import { FormsModule } from '@angular/forms';
 
 
 import { CustomerscontainerComponent } from './customerscontainer/customerscontainer.component';
@@ -34,7 +35,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatListModule,
     MatInputModule,
     MatButtonModule,
-    MatSelectModule
+    MatSelectModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

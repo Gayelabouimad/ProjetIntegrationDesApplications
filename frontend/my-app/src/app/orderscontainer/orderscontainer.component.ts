@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomersService } from '../services/customers.service';
 import { BooksServiceService } from '../services/books-service.service';
+import { OrdersService } from '../services/orders.service';
 
 @Component({
   selector: 'app-orderscontainer',
@@ -10,7 +11,9 @@ import { BooksServiceService } from '../services/books-service.service';
 export class OrderscontainerComponent implements OnInit {
   public customers;
   public books;
-  constructor(private customersService: CustomersService, private booksService: BooksServiceService) { }
+  selectedBook: string;
+  selectedCustomer: string;
+  constructor(private customersService: CustomersService, private booksService: BooksServiceService, private ordersService: OrdersService) { }
 
   ngOnInit() {
   this.getCustomers();
@@ -32,6 +35,19 @@ export class OrderscontainerComponent implements OnInit {
     });
   }
   makeOrder(){
-
+    let data = {
+      "bookName": this.selectedBook,
+      "ClientName": this.selectedCustomer
+    }
+    // let data = {
+    //   "bookName": "book1",
+    //   "ClientName": "Gayel"
+    // }
+    console.log(data);
+    this.ordersService.makeOrder(data)
+    .subscribe((data) => {
+      console.log(data);
+      location.reload();
+    });
   }
 }

@@ -247,7 +247,7 @@ services:
   books:
     build: ./booksservice
     ports:
-      - "8081:8081"
+      - "8084:8084"
 # Service #2 Customers Service
   customers:
     build: ./customersservice
@@ -261,11 +261,16 @@ services:
 # MongoDB
   mongo:
     container_name: mongodb
+    restart: always
     image: mongo
     volumes:
       - ../data/db:/data/db
+
+  mongo-express:
+    image: mongo-express
+    restart: always
     ports:
-      - "27017:27017"
+      - "8081:8081"
 
 ```
 
@@ -273,8 +278,12 @@ above is the docker compose file
 we specify the build file which is the docker file
 and we bind the ports local to container's
 
-## RabbitMQ
+## MQTT
 This service will provide a way to make the messaging between the different microservices
+
+
+
+
 <!--
 ## NGINX
 This tool will help us make load balance and acts as an API Gateway.

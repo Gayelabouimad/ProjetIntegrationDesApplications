@@ -5,11 +5,12 @@ import { HttpHeaders } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class BooksServiceService {
+export class OrdersService {
 
   constructor(private http: HttpClient) { }
 
-  getBooks() {
+  
+  makeOrder(data) {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -17,6 +18,6 @@ export class BooksServiceService {
         'Access-Control-Allow-Credentials': 'true'
       })
     };
-    return this.http.get('http://192.168.99.100:8080/getBooks', httpOptions);
+    return this.http.post('http://192.168.99.100:8080/receiveOrder', data, httpOptions);
   }
 }

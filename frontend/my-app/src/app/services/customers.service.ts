@@ -15,7 +15,7 @@ export class CustomersService {
         'Access-Control-Allow-Credentials': 'true'
       })
     };
-    return this.http.post('http://192.168.99.100:8082/addCustomer', customer, httpOptions).pipe();
+    return this.http.post('http://192.168.99.100:8080/addCustomer', customer, httpOptions).pipe();
   }
 
   getCustomers() {
@@ -26,6 +26,6 @@ export class CustomersService {
         'Access-Control-Allow-Credentials': 'true'
       })
     };
-    return this.http.get('http://192.168.99.100:8082/getCustomers', httpOptions);
+    return this.http.get('http://192.168.99.100:8080/getCustomers', httpOptions);
   }
 }

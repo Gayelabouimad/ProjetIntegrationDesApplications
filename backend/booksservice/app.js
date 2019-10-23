@@ -16,7 +16,7 @@ var model = require('./models/booksModel');
 // --------------------------------------
 var mqtt = require('mqtt')
 // Client Connection
-var client = mqtt.connect('mqtt://10.81.4.175:1883')
+var client = mqtt.connect('mqtt://192.168.16.7:1883')
 
 client.on('connect', function () {
     console.log("Connected")
@@ -90,8 +90,8 @@ app.get('/initiateDB', function (req, res) {
 });
 
 
-var server = app.listen(8081, function () {
-    console.log("Server running on :", 8081);
+var server = app.listen(8084, function () {
+    console.log("Server running on :", 8084);
 });
 
 app.get('/heartbeat', function (req, res) {

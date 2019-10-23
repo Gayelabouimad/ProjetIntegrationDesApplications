@@ -22,7 +22,8 @@ export class CustomerscontainerComponent implements OnInit {
       phoneNumber: String(phoneNumber)
     };
     // tslint:disable-next-line: max-line-length
-    this.customersService.addCustomer(customer).subscribe(() => {}, (error) => console.log(error), () => console.log('Data Insert'));
+      
+      this.customersService.addCustomer(customer).subscribe(() => {}, (error) => console.log(error), () => {console.log('Data Insert'); location.reload();});
   }
 
   showCustomers() {
@@ -30,6 +31,7 @@ export class CustomerscontainerComponent implements OnInit {
     .subscribe((data) => {
       this.customers = data;
       console.log('data', data);
+
       // console.log('this.books', this.books);
     });
   }
