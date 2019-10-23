@@ -1,19 +1,18 @@
 # ProjetIntegrationDesApplications
 ## How to run the Project
 
-Shell #1 (any path)
-
-> ``` mongod --bind_ip <YOUR IP> ```
-
-Shell #2 (any path)
-
-> ``` mongo <YOUR IP> ```
-
-Shell #3 (./frontend/my-app/)
+Shell #1 (./frontend/my-app/)
 
 > ``` ng serve ```
 
-Shell #4 (./backend/) - **make sure to open docker tool box before running this command**
+<!-- > ``` mongod --bind_ip <YOUR IP> ``` -->
+
+Shell #2 (any path)
+
+> ``` mosquitto ```
+<!-- > ``` mongo <YOUR IP> ``` -->
+
+Shell #3 (./backend/) - **make sure to open docker tool box before running this command**
 
 > ``` docker-compose up ```
 
