@@ -1,22 +1,20 @@
 # ProjetIntegrationDesApplications
-## How to run the Project
-
+## A. How to run the Project
+***
 Shell #1 (./frontend/my-app/)
 
 > ``` ng serve ```
 
-<!-- > ``` mongod --bind_ip <YOUR IP> ``` -->
-
 Shell #2 (any path)
 
 > ``` mosquitto ```
-<!-- > ``` mongo <YOUR IP> ``` -->
 
 Shell #3 (./backend/) - **make sure to open docker tool box before running this command**
 
 > ``` docker-compose up ```
 
-## Backend
+## B. Backend (To build Locally)
+***
 
 to build one of the microservices. example :
 go to backend/booksservice and run
@@ -36,7 +34,8 @@ and then instead of running `node app.js` , use `nodemon app.js`
 
 this tool will re-run the backend every time a change is made
 
-## Frontend
+## C. Frontend (To build Locally)
+***
 
 to build the front end go to /frontend/my-app and run
 
@@ -50,7 +49,9 @@ then in your browser
 
 > ``` localhost:4200 ```
 
-## MongoDB commands (To Run MongoDB)
+## D. MongoDB commands (To Run MongoDB Locally) 
+***
+
 Open the shell and write down this command
 
 > ```mongod --bind_ip <YOUR_IP_ADDR>```
@@ -59,7 +60,9 @@ Then in another shell
 
 > ```mongo.exe <YOUR_IP_ADDR> ```
 
-## MongoDB commands (To create a DB)
+## E. MongoDB commands (To create a DB)
+***
+
 In order to create a Database
 
 > ``` use <DB_Name> ```
@@ -77,22 +80,24 @@ In order to get all the collection
 > ``` db.<Coll_Name>.find()```
 
 
-
-## Fetching data in the front-end commands
+## F. How does the FRONTEND WORK
+***
+### _F.1. Fetching data in the front-end (Books Section)_
 In order to fetch data, you need to create a service. To do that :
-open the terminal in the services folder then write this command
+
+1. Open the terminal in the services folder then write this command
 
 > ``` ng generate service <service_Name> ```
-example "ng generate service booksService"
 
-In this service you will need to do an Http request so you need to import the Http module in the app module
+*Example: "ng generate service booksService"*
 
-> ```import { HttpClientModule } from '@angular/common/http';```
+2. In this service you will need to do an Http request so you need to import the Http module in the app module
+
+> ```import { HttpClientModule } from '@angular/common/http'; ```
 
 and place HttpClientModule under the imports array in NgModules
 
-Now after importing it in the app module, you need to configure the service
-you should import the http client in the service as follows:
+3. Now after importing it in the app module, you need to configure the service. You should import the http client in the service as follows:
 
 > ``` import { HttpClient } from '@angular/common/http'; ```
 
@@ -100,7 +105,7 @@ then add it to the constructor in order to use it in the functions to make the c
 
 > ```   constructor(private http: HttpClient) { } ```
 
-To make the call to the back end, create the function getSomething() as follows
+4. To make the call to the back end, create the function getSomething() as follows
 
 > ```
 >  getBooks() {
@@ -114,21 +119,19 @@ To make the call to the back end, create the function getSomething() as follows
 >  }
 >  ```
 
-this function will be used in the books container component as follows
+5. this function will be used in the books container component as follows
 
 ```
   constructor(private booksService: BooksServiceService) { }
 
   ngOnInit() {
-    this.showConfig();
+    this.showBooks();
   }
 
-  showConfig() {
+  showBooks() {
     this.booksService.getBooks()
     .subscribe((data) => {
       this.books = data;
-      console.log('data', data);
-      console.log('this.books', this.books);
     });
   }
 ```
@@ -136,8 +139,8 @@ In order to use this service we should inport it in the component
 
 > ``` import { BooksServiceService } from '../services/books-service.service'; ```
 
-After fetching the data in the component ts file. we should show it in the html.
-since the data in ts is binded to the data in the ts we can simply use the books object that's in the ts by using {{ books }} in the html file as follows
+6. After fetching the data in the component ts file. we should show it in the html.
+Since the data in ts is binded to the data in the ts we can simply use the books object that's in the ts by using {{ books }} in the html file as follows
 
 ```
     <div *ngFor="let book of books">
@@ -145,12 +148,13 @@ since the data in ts is binded to the data in the ts we can simply use the books
     </div>
 ```
 
-as the code above shows we are looping over the array(books) of objects(book) using *ngFor
+As the code above shows we are looping over the array(books) of objects(book) using *ngFor
 then for each book we are displaying its name
 
 
 
-## Docker and Co..
+## G. Docker and Co..
+***
 
 ### Definition
 
@@ -277,7 +281,9 @@ above is the docker compose file
 we specify the build file which is the docker file
 and we bind the ports local to container's
 
-## MQTT
+## H. MQTT
+***
+
 This service will provide a way to make the messaging between the different microservices
 
 
