@@ -16,8 +16,7 @@ DataAccess.prototype.GetEntities = async function (dbName, CollectionName){
                 useUnifiedTopology: true
               }
             );
-            // console.log("response :", response);
-            // console.log("ANA HONN")
+
             var database = await response.db(dbName);
             var collection = await database.collection(CollectionName);
             const item = await collection.find();

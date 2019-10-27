@@ -8,16 +8,16 @@
         </mat-card-subtitle>
     </mat-card-header>
 
-    <mat-list>
-      <mat-list-item *ngFor="let book of books">
-        <h4 mat-line>{{ book.name }}</h4>
-        <p *ngIf="book.status == 0; else notShow" style='color: blue'>Available</p>
-        <ng-template #notShow>
-          <p style='color: red'>Taken</p>
-        </ng-template>
-        <mat-divider></mat-divider>
-      </mat-list-item>
-    </mat-list>
+<mat-list>
+  <mat-list-item *ngFor="let book of books">
+    <h4 mat-line>{{ book.name }}</h4>
+    <p *ngIf="book.status == 0; else notShow" style='color: blue'>Available</p>
+    <ng-template #notShow>
+      <p style='color: red'>Taken</p>
+    </ng-template>
+    <mat-divider></mat-divider>
+  </mat-list-item>
+</mat-list>
 
   </mat-card>
 </div>

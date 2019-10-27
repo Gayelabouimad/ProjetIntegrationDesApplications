@@ -1,8 +1,6 @@
 # ProjetIntegrationDesApplications
 ## A. How to run the Project
-***
 Shell #1 (./frontend/my-app/)
-
 > ``` ng serve ```
 
 Shell #2 (any path)
@@ -14,8 +12,6 @@ Shell #3 (./backend/) - **make sure to open docker tool box before running this 
 > ``` docker-compose up ```
 
 ## B. Backend (To build Locally)
-***
-
 to build one of the microservices. example :
 go to backend/booksservice and run
 
@@ -24,7 +20,6 @@ go to backend/booksservice and run
 then run
 
 > ``` node app.js ```
-
 
 **If you want to use a live reloading engine** run the following command:
 
@@ -35,8 +30,6 @@ and then instead of running `node app.js` , use `nodemon app.js`
 this tool will re-run the backend every time a change is made
 
 ## C. Frontend (To build Locally)
-***
-
 to build the front end go to /frontend/my-app and run
 
 > ``` npm install ```
@@ -50,8 +43,6 @@ then in your browser
 > ``` localhost:4200 ```
 
 ## D. MongoDB commands (To Run MongoDB Locally) 
-***
-
 Open the shell and write down this command
 
 > ```mongod --bind_ip <YOUR_IP_ADDR>```
@@ -61,8 +52,6 @@ Then in another shell
 > ```mongo.exe <YOUR_IP_ADDR> ```
 
 ## E. MongoDB commands (To create a DB)
-***
-
 In order to create a Database
 
 > ``` use <DB_Name> ```
@@ -79,9 +68,7 @@ In order to get all the collection
 
 > ``` db.<Coll_Name>.find()```
 
-
 ## F. How does the FRONTEND WORK
-***
 ### _F.1. Fetching data in the front-end (Books Section)_
 In order to fetch data, you need to create a service. To do that :
 
@@ -150,9 +137,9 @@ In order to use this service we should inport it in the component
 Since the data in ts is binded to the data in the ts we can simply use the books object that's in the ts by using {{ books }} in the html file as follows
 
 ```
-    <div *ngFor="let book of books">
-      {{book.name}}
-    </div>
+<div *ngFor="let book of books">
+  {{book.name}}
+</div>
 ```
 
 As the code above shows we are looping over the array(books) of objects(book) using *ngFor
@@ -161,27 +148,25 @@ then for each book we are displaying its name
 we have used angular material library as follows:
 
 ```
-  <!-- loop over the books -->
+<!-- loop over the books -->
 
-  <mat-list-item *ngFor="let book of books">
-    <h4 mat-line>{{ book.name }}</h4>
-  
-    <!-- book state : Available or Taken, if statement used below -->
-    <p *ngIf="book.status == 0; else notShow" style='color: blue'>Available</p>
-  
-    <ng-template #notShow>
-      <p style='color: red'>Taken</p>
-    </ng-template>
-  
-    <mat-divider></mat-divider>
-  
-  </mat-list-item>
+<mat-list-item *ngFor="let book of books">
+  <h4 mat-line>{{ book.name }}</h4>
+
+  <!-- book state : Available or Taken, if statement used below -->
+  <p *ngIf="book.status == 0; else notShow" style='color: blue'>Available</p>
+
+  <ng-template #notShow>
+    <p style='color: red'>Taken</p>
+  </ng-template>
+
+  <mat-divider></mat-divider>
+
+</mat-list-item>
 ```
 
 
 ## G. Docker and Co..
-***
-
 ### Definition
 
 **What is Docker?**
@@ -308,8 +293,6 @@ we specify the build file which is the docker file
 and we bind the ports local to container's
 
 ## H. MQTT
-***
-
 This service will provide a way to make the messaging between the different microservices
 
 
