@@ -1,13 +1,9 @@
 # ProjetIntegrationDesApplications
 ## A. How to run the Project
-Shell #1 (./frontend/my-app/)
-> ``` ng serve ```
-
-Shell #2 (any path)
-
+Shell #1 (any path)
 > ``` mosquitto ```
 
-Shell #3 (./backend/) - **make sure to open docker tool box before running this command**
+Shell #2 (./ProjetIntegrationDesApplications) - **make sure to open docker tool box before running this command**
 
 > ``` docker-compose up ```
 

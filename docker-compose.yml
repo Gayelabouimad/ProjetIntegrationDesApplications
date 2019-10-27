@@ -1,27 +1,33 @@
-version: '3'
+version: '2'
 services:
+# Front End
+  frontend:
+    container_name: FrontEnd
+    build: ./frontend
+    ports:
+      - "4200:4200"
 # Service #0 API Gateway
   apigateway:
     container_name: APIGateway
-    build: ./APIGateway
+    build: ./backend/APIGateway
     ports:
       - "8080:8080"
 # Service #1 Books Service
   books:
     container_name: BooksService
-    build: ./booksservice
+    build: ./backend/booksservice
     ports:
       - "8084:8084"
 # Service #2 Customers Service
   customers:
     container_name: CustomersService
-    build: ./customersservice
+    build: ./backend/customersservice
     ports:
       - "8082:8082"
 # Service #3 Orders Service
   orders:
     container_name: OrdersService
-    build: ./ordersservice
+    build: ./backend/ordersservice
     ports:
       - "8083:8083"
 # MongoDB
@@ -37,4 +43,3 @@ services:
     restart: always
     ports:
       - "8081:8081"
-
