@@ -48,7 +48,7 @@ app.get("/getStatus", async function (req, res) {
       name: "Books Microservice",
       url: "http://192.168.99.100",
       address: "192.168.99.100",
-      port: 8081
+      port: 8084
     },
     {
       name: "Customers Microservice",

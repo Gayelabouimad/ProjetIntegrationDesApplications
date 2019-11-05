@@ -28,10 +28,18 @@ export class OrderscontainerComponent implements OnInit {
   getBooks() {
     this.booksService.getBooks()
     .subscribe((data) => {
-      console.log('data-----------------', data);
+      let arraydata = [];
+      var filteredData = [];
 
-      this.books = data;
-      console.log('data', data);
+      for (let key in data){
+        arraydata.push(data[key])
+      }
+      for (let book of arraydata){
+        if(!book.status){
+          filteredData.push(book);
+        }
+      }
+      this.books = filteredData;
     });
   }
   makeOrder(){
@@ -39,14 +47,8 @@ export class OrderscontainerComponent implements OnInit {
       "bookName": this.selectedBook,
       "ClientName": this.selectedCustomer
     }
-    // let data = {
-    //   "bookName": "book1",
-    //   "ClientName": "Gayel"
-    // }
-    console.log(data);
     this.ordersService.makeOrder(data)
     .subscribe((data) => {
-      console.log(data);
       location.reload();
     });
   }

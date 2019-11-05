@@ -30,9 +30,6 @@ export class CustomerscontainerComponent implements OnInit {
     this.customersService.getCustomers()
     .subscribe((data) => {
       this.customers = data;
-      console.log('data', data);
-
-      // console.log('this.books', this.books);
     });
   }
 }
